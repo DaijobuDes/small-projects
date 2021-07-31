@@ -12,6 +12,11 @@ reading posts through discord instead of going to facebook's site, in which I do
 like anymore due to the new UI that they implmented some months ago. Really, I miss the 
 old facebook's look.
 
+### Notes also
+
+Since discord has a text limit of 2000 characters, this script only gets the first 500 characters it 
+finds on the post and appends the link to the post in order to continue reading. (and to be less spammy of course)
+
 ```
 Project licensed under GNU GPL v3.0
 Repository at https://github.com/DaijobuDes/small-projects
