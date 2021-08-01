@@ -9,7 +9,7 @@ by one minute with a maximum time of 10 minutes.
 
 The reason why I created this is because I want to ease the access of 
 reading posts through discord instead of going to facebook's site, in which I do not
-like anymore due to the new UI that they implmented some months ago. Really, I miss the 
+like anymore due to the new UI that they implemented some months ago. Really, I miss the 
 old facebook's look.
 
 ### Notes also
