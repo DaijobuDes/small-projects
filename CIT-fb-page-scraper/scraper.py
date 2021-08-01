@@ -18,8 +18,9 @@
 #
 
 import requests
+import random
 from discord import Webhook, RequestsWebhookAdapter
-from facebook_scraper import get_posts
+from facebook_scraper import get_posts, set_user_agent
 from time import sleep
 # For logging
 from copy import copy
@@ -72,17 +73,18 @@ class NoWebhookException(Exception):
 
 # Global variables
 g_URL = '' # Variable used to compare
-g_Retries = 300
+g_Retries = 180
 
 
 # Discord channel webhook URL
 # Format is "https://discord.com/api/webhooks/<channel_id>/<webhook_token>/<endpoint>"
-WEBHOOK_URL = None
+WEBHOOK_URL = ""
 # Read more here: https://discord.com/developers/docs/resources/webhook
 
 def sendWebhook(g_URL: str, g_Retries: int):
     # Enclose in try-except 
     try:
+        set_user_agent("Mozilla/5.0 (Linux; Android 4.3; Nexus 7 Build/JSS15Q) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36")
         while True:
             if WEBHOOK_URL is None or WEBHOOK_URL == "":
                 raise NoWebhookException("WEBHOOK_URL is empty")
@@ -94,11 +96,12 @@ def sendWebhook(g_URL: str, g_Retries: int):
                         wb.send(f"{post[1]['text'][:500]}...\n\nPost Link: {post[1]['post_url']}")
                         log.debug('Webhook sent.')
                         g_URL = post[1]['post_url']
-                        log.debug('g_URL refreshed.')
-                        log.debug("Setting g_Retries to 5 minutes.")
-                        g_Retries = 300
-            log.debug('Sleeping for 300 seconds.')
-            sleep(300)
+                        log.debug(f'g_URL refreshed. g_URL = {g_URL}')
+                        log.debug("Setting g_Retries to 180 seconds.")
+                        g_Retries = 180
+            t = random.randrange(150, 480)
+            log.debug(f'Sleeping for {t} seconds.')
+            sleep(t)
 
     # If ever the user presses CTRL + C to stop the operation
     except KeyboardInterrupt:
@@ -120,6 +123,6 @@ def sendWebhook(g_URL: str, g_Retries: int):
 if __name__ == '__main__':
     # Main variables
     g_URL = '' # Variable used to compare
-    g_Retries = 300
+    g_Retries = 180
     log.debug(f"Executing function (void) sendWebhook() with arguments g_URL={g_URL}, g_Retries={g_Retries}")
     sendWebhook(g_URL, g_Retries)
