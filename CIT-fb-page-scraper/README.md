@@ -1,3 +1,9 @@
+## One big note
+
+🟥 Please run only one instance of the script or you will be temporarily banned by facebook.
+
+🟥 You might get IP banned by doing this. Run at your own risk.
+
 ### What's this all about?
 
 This script scrapes the posts of CIT - University's Facebook Page
